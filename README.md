@@ -193,6 +193,7 @@ Installing templates...
 | `/sales objections <topic>` | Objection handling playbook | `OBJECTION-PLAYBOOK.md` |
 | `/sales icp <description>` | Ideal Customer Profile builder | `IDEAL-CUSTOMER-PROFILE.md` |
 | `/sales competitors <url>` | Competitive intelligence | `COMPETITIVE-INTEL.md` |
+| `/sales brief <stakeholder>` | Stakeholder briefing | `STAKEHOLDER-BRIEF-*.md` |
 | `/sales report` | Pipeline report (Markdown) | `SALES-REPORT.md` |
 | `/sales report-pdf` | Pipeline report (PDF) | `SALES-REPORT-*.pdf` |
 

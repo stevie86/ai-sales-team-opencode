@@ -21,6 +21,7 @@ This is the main orchestrator skill that routes to 13 sub-skills. Use it directl
 | `sales-objections` | Objection handling playbook | Topic/industry | OBJECTION-PLAYBOOK.md |
 | `sales-icp` | Ideal Customer Profile builder | Description | IDEAL-CUSTOMER-PROFILE.md |
 | `sales-competitors` | Competitive intelligence | URL | COMPETITIVE-INTEL.md |
+| `sales-brief` | Stakeholder briefing generator | Stakeholder type | STAKEHOLDER-BRIEF-*.md |
 | `sales-report` | Pipeline report (Markdown) | — | SALES-REPORT.md |
 | `sales-report-pdf` | Pipeline report (PDF) | — | SALES-REPORT-*.pdf |
 

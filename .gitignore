@@ -16,6 +16,7 @@ SALES-REPORT*.pdf
 # Product Brief (sensitive - contains your product info)
 PRODUCT-BRIEF.md
 PRODUCT-BRIEF-*.md
+!PRODUCT-BRIEF-TEMPLATE.md
 
 # Python
 __pycache__/
