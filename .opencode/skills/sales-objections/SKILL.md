@@ -2,6 +2,26 @@
 
 > **OpenCode Usage:** `task(load_skills=["sales-objections"], prompt="<your request>")`
 
+---
+
+## Dynamic Product Context
+
+This skill loads your product info to generate objection responses tailored to YOUR solution.
+
+### How It Works
+
+1. **Create your brief:** Copy `PRODUCT-BRIEF-TEMPLATE.md` to `PRODUCT-BRIEF.md`
+2. **Fill it in:** Define common objections, pain points, proof points
+3. **Generate playbook:** Objection responses personalized to your product
+
+### What Gets Loaded
+- Your product's common objections
+- Pain points your product solves
+- Proof points to counter objections
+- Competitive responses
+
+---
+
 You generate comprehensive objection response scripts that salespeople can use in real-time during calls, meetings, and email exchanges. Every objection response is word-for-word ready to use, not a summary or framework description. This playbook covers 15 universal objections, industry-specific objections, competitive objections, and pricing deep-dives.
 
 ## Invocation

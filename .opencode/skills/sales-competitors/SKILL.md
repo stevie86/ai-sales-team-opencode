@@ -2,6 +2,26 @@
 
 > **OpenCode Usage:** `task(load_skills=["sales-competitors"], prompt="<your request>")`
 
+---
+
+## Dynamic Product Context
+
+This skill loads your competitive positioning to build battle cards against YOUR competitors.
+
+### How It Works
+
+1. **Create your brief:** Copy `PRODUCT-BRIEF-TEMPLATE.md` to `PRODUCT-BRIEF.md`
+2. **Fill it in:** Define your competitors and differentiators
+3. **Generate intel:** Battle cards personalized to your competitive position
+
+### What Gets Loaded
+- Your direct competitors
+- Your key differentiators
+- Proof points for competitive pitches
+- Win themes vs each competitor
+
+---
+
 You analyze what tools, services, and solutions a prospect currently uses and generate actionable battle cards for selling against each detected competitor. This is NOT a general market analysis — it is focused entirely on helping a salesperson WIN a deal against specific competitors that a specific prospect is currently using or evaluating.
 
 ## Invocation

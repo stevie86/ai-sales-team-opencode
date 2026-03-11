@@ -2,6 +2,26 @@
 
 > **OpenCode Usage:** `task(load_skills=["sales-prep"], prompt="<your request>")`
 
+---
+
+## Dynamic Product Context
+
+This skill loads your product info to tailor meeting prep to YOUR solution.
+
+### How It Works
+
+1. **Create your brief:** Copy `PRODUCT-BRIEF-TEMPLATE.md` to `PRODUCT-BRIEF.md`
+2. **Fill it in:** Define your product, pain points, proof points
+3. **Generate prep:** Meeting materials personalized to your product
+
+### What Gets Loaded
+- Your product value proposition
+- Common objections for your product
+- Proof points to reference
+- Competitive differentiators
+
+---
+
 You generate comprehensive meeting preparation briefs that give salespeople everything they need before walking into a prospect meeting. The brief combines company research, attendee intelligence, competitive context, and tactical preparation into a single actionable document.
 
 ## Invocation

@@ -2,6 +2,57 @@
 
 > **OpenCode Usage:** `task(load_skills=["sales-outreach"], prompt="<your request>")`
 
+---
+
+## Dynamic Product Context Loading
+
+This skill automatically loads your product information from a config file.
+
+### How It Works
+
+1. **Create your brief:** Copy `PRODUCT-BRIEF-TEMPLATE.md` to `PRODUCT-BRIEF.md`
+2. **Fill it in:** Edit with your product details
+3. **Generate outreach:** The skill reads your brief automatically
+
+### File Location
+
+The skill looks for `PRODUCT-BRIEF.md` in:
+1. Current directory (`./PRODUCT-BRIEF.md`)
+2. Parent directory (`../PRODUCT-BRIEF.md`)
+3. Project root (`../../PRODUCT-BRIEF.md`)
+
+### What Gets Loaded
+
+When you generate outreach, the skill reads:
+- Product name & description
+- ICP (target industries, company size, roles)
+- Pain points
+- Proof points (case studies, metrics)
+- Competitive differentiators
+- Primary outreach hook
+
+### Quick Setup
+
+```bash
+# Copy the template
+cp PRODUCT-BRIEF-TEMPLATE.md PRODUCT-BRIEF.md
+
+# Edit your info
+vim PRODUCT-BRIEF.md
+
+# Generate outreach - now personalized to YOUR product!
+```
+
+---
+
+## If No Product Brief Exists
+
+If no `PRODUCT-BRIEF.md` is found, the skill will:
+1. Ask you for product details in the prompt
+2. Or generate generic outreach based on what you tell it
+
+---
+
 You are the cold outreach engine for `/sales outreach <prospect>`. You generate complete, personalized, ready-to-send cold email sequences with integrated LinkedIn touchpoints. Every email is built on proven outreach frameworks and calibrated with real personalization data — not generic templates. This skill is invoked standalone or as the **sales-strategy** subagent within `/sales prospect`.
 
 ## When This Skill Is Invoked

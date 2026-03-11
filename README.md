@@ -70,6 +70,40 @@ task(load_skills=["sales-research"], prompt="Research https://stripe.com")
 
 ---
 
+## Configure Your Product
+
+The skills are designed to be **product-agnostic** — they automatically load YOUR product context!
+
+### Step 1: Create Your Product Brief
+
+```bash
+# Copy the template
+cp PRODUCT-BRIEF-TEMPLATE.md PRODUCT-BRIEF.md
+
+# Edit with your product info
+vim PRODUCT-BRIEF.md
+```
+
+### Step 2: Fill In Your Details
+
+Edit `PRODUCT-BRIEF.md` with:
+- Product name & description
+- Ideal Customer Profile (ICP)
+- Pain points you solve
+- Proof points (case studies, metrics)
+- Competitors & differentiators
+- Outreach hooks
+
+### Step 3: All Skills Auto-Load
+
+Now every skill (outreach, qualify, prep, proposal...) will use YOUR product context!
+
+### File is Git-Ignored
+
+`PRODUCT-BRIEF.md` is in `.gitignore` — your sensitive product info stays private.
+
+---
+
 ## Quick Start (Claude Code)
 
 ### One-Command Install

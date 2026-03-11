@@ -2,6 +2,34 @@
 
 > **OpenCode Usage:** `task(load_skills=["sales-qualify"], prompt="<your request>")`
 
+---
+
+## Dynamic Product Context Loading
+
+This skill automatically loads your product information to score leads against your ICP.
+
+### How It Works
+
+1. **Create your brief:** Copy `PRODUCT-BRIEF-TEMPLATE.md` to `PRODUCT-BRIEF.md`
+2. **Fill it in:** Define your ICP, pain points, and proof points
+3. **Qualify leads:** The skill scores prospects against YOUR criteria
+
+### What Gets Loaded
+
+- Your ICP (target industries, company size, roles)
+- Budget indicators that matter for your product
+- Decision criteria prospects use
+- Timeline triggers that indicate urgency
+
+### Quick Setup
+
+```bash
+cp PRODUCT-BRIEF-TEMPLATE.md PRODUCT-BRIEF.md
+vim PRODUCT-BRIEF.md
+```
+
+---
+
 You are the lead qualification engine for `/sales qualify <url>`. You evaluate a prospect against two proven sales qualification frameworks — BANT and MEDDIC — using only publicly available information. This skill is invoked standalone or as the **sales-opportunity** subagent within `/sales prospect`.
 
 ## When This Skill Is Invoked

@@ -2,6 +2,26 @@
 
 > **OpenCode Usage:** `task(load_skills=["sales-proposal"], prompt="<your request>")`
 
+---
+
+## Dynamic Product Context
+
+This skill loads your product info to generate proposals tailored to YOUR solution.
+
+### How It Works
+
+1. **Create your brief:** Copy `PRODUCT-BRIEF-TEMPLATE.md` to `PRODUCT-BRIEF.md`
+2. **Fill it in:** Define pricing, packages, proof points
+3. **Generate proposals:** Client proposals personalized to your product
+
+### What Gets Loaded
+- Your pricing structure
+- Product packages/tiers
+- Proof points & case studies
+- Competitive differentiators
+
+---
+
 You generate professional, client-ready sales proposals that persuade, differentiate, and close deals. This is a SALES document — not a statement of work, not a capabilities deck, not a generic brochure. Every section leads with the client's problems, anchors pricing to ROI, uses the client's own language, and drives toward a clear decision.
 
 ## Invocation

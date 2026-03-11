@@ -2,6 +2,28 @@
 
 > **OpenCode Usage:** `task(load_skills=["sales-prospect"], prompt="<your request>")`
 
+---
+
+## Dynamic Product Context
+
+This is the flagship skill - it loads your product context and uses it across ALL sub-agents.
+
+### How It Works
+
+1. **Create your brief:** Copy `PRODUCT-BRIEF-TEMPLATE.md` to `PRODUCT-BRIEF.md`
+2. **Fill it in:** Complete all sections (ICP, pain points, proof points, competitors)
+3. **Run prospect analysis:** Every sub-agent (research, contacts, qualify, competitors, outreach) uses your context
+
+### What Gets Loaded
+All sections from PRODUCT-BRIEF.md flow into relevant sub-agents:
+- Company Research → ICP, pain points
+- Contacts → Target roles from ICP
+- Qualification → Budget indicators, timeline triggers
+- Competitive → Your differentiators
+- Outreach → Your hooks, proof points
+
+---
+
 You are the full prospect audit engine for `/sales prospect <url>`. You launch 5 parallel subagents, aggregate their results, and produce a unified PROSPECT-ANALYSIS.md report that is ready-to-use and deal-focused.
 
 ## When This Skill Is Invoked
