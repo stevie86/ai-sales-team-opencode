@@ -1,0 +1,186 @@
+#!/bin/bash
+#
+# AI Sales Team for OpenCode - CLI Wrapper
+# 
+# Usage:
+#   sales prospect <url>     - Full prospect analysis
+#   sales research <url>     - Company research
+#   sales qualify <url>      - Lead qualification
+#   sales contacts <url>     - Find decision makers
+#   sales outreach <company> - Generate outreach
+#   sales followup <company>- Follow-up sequence
+#   sales prep <url>         - Meeting preparation
+#   sales proposal <client>  - Client proposal
+#   sales objections <topic>- Objection handling
+#   sales icp <desc>        - Build ICP
+#   sales competitors <url>  - Competitive intel
+#   sales report            - Pipeline report
+#   sales report-pdf       - PDF report
+#
+# Installation:
+#   1. Copy this script to a directory in your PATH
+#   2. Make it executable: chmod +x sales
+#   3. Run: sales help
+#
+# Requirements:
+#   - OpenCode installed
+
+set -e
+
+# Color codes
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+# Detect OpenCode command
+if command -v opencode &> /dev/null; then
+    OPENCODE_CMD="opencode"
+elif command -v omo &> /dev/null; then
+    OPENCODE_CMD="omo"
+else
+    echo -e "${RED}Error: OpenCode not found. Please install from https://opencode.ai${NC}"
+    exit 1
+fi
+
+# Skill mappings
+declare -A SKILL_MAP=(
+    ["prospect"]="sales-prospect"
+    ["research"]="sales-research"
+    ["qualify"]="sales-qualify"
+    ["contacts"]="sales-contacts"
+    ["outreach"]="sales-outreach"
+    ["followup"]="sales-followup"
+    ["prep"]="sales-prep"
+    ["proposal"]="sales-proposal"
+    ["objections"]="sales-objections"
+    ["icp"]="sales-icp"
+    ["competitors"]="sales-competitors"
+    ["report"]="sales-report"
+    ["report-pdf"]="sales-report-pdf"
+)
+
+show_help() {
+    cat << EOF
+${BLUE}AI Sales Team for OpenCode${NC}
+
+${GREEN}Usage:${NC}
+    sales <command> [arguments]
+
+${GREEN}Commands:${NC}
+    prospect <url>      Full prospect analysis (5 agents)    [URL]
+    research <url>      Company research & firmographics    [URL]
+    qualify <url>       Lead qualification (BANT/MEDDIC)   [URL]
+    contacts <url>      Find decision makers                [URL]
+    outreach <company>  Generate cold outreach              [Company]
+    followup <company>  Follow-up email sequence            [Company]
+    prep <url>          Meeting preparation brief           [URL]
+    proposal <client>   Client proposal generator           [Client]
+    objections <topic>  Objection handling playbook         [Topic]
+    icp <description>   Build Ideal Customer Profile       [Desc]
+    competitors <url>  Competitive intelligence            [URL]
+    report              Pipeline report (Markdown)
+    report-pdf          Pipeline report (PDF)
+
+${GREEN}Examples:${NC}
+    sales research https://stripe.com
+    sales contacts https://notion.so
+    sales outreach Linear
+    sales objections SaaS pricing
+    sales prospect https://acme.com
+
+${GREEN}Installation:${NC}
+    1. Copy to PATH: cp sales /usr/local/bin/
+    2. Make executable: chmod +x /usr/local/bin/sales
+    3. Run: sales help
+
+${GREEN}Output:${NC}
+    Results are saved to markdown files in current directory.
+
+EOF
+}
+
+show_error() {
+    echo -e "${RED}Error: $1${NC}"
+    echo "Run 'sales help' for usage information"
+    exit 1
+}
+
+# Parse command
+COMMAND="${1:-}"
+shift || true
+
+case "$COMMAND" in
+    help|--help|-h)
+        show_help
+        exit 0
+        ;;
+    prospect|research|qualify|contacts|outreach|followup|prep|proposal|objections|icp|competitors|report|report-pdf)
+        SKILL="${SKILL_MAP[$COMMAND]}"
+        
+        # Build prompt based on command
+        case "$COMMAND" in
+            prospect)
+                [ -z "$1" ] && show_error "URL required for prospect command"
+                PROMPT="Run full prospect analysis on $1"
+                ;;
+            research)
+                [ -z "$1" ] && show_error "URL required for research command"
+                PROMPT="Research company at $1"
+                ;;
+            qualify)
+                [ -z "$1" ] && show_error "URL required for qualify command"
+                PROMPT="Qualify lead at $1 using BANT framework"
+                ;;
+            contacts)
+                [ -z "$1" ] && show_error "URL required for contacts command"
+                PROMPT="Find decision makers at $1"
+                ;;
+            outreach)
+                [ -z "$1" ] && show_error "Company name required for outreach command"
+                PROMPT="Generate cold outreach for $1"
+                ;;
+            followup)
+                [ -z "$1" ] && show_error "Company name required for followup command"
+                PROMPT="Generate follow-up sequence for $1"
+                ;;
+            prep)
+                [ -z "$1" ] && show_error "URL required for prep command"
+                PROMPT="Prepare meeting brief for $1"
+                ;;
+            proposal)
+                [ -z "$1" ] && show_error "Client name required for proposal command"
+                PROMPT="Generate proposal for $1"
+                ;;
+            objections)
+                [ -z "$1" ] && show_error "Topic required for objections command"
+                PROMPT="Handle objections about $1"
+                ;;
+            icp)
+                [ -z "$1" ] && show_error "Description required for icp command"
+                PROMPT="Build ICP for $1"
+                ;;
+            competitors)
+                [ -z "$1" ] && show_error "URL required for competitors command"
+                PROMPT="Analyze competitors for $1"
+                ;;
+            report)
+                PROMPT="Generate sales pipeline report"
+                ;;
+            report-pdf)
+                PROMPT="Generate PDF pipeline report"
+                ;;
+        esac
+        
+        echo -e "${BLUE}AI Sales Team${NC} » ${GREEN}$COMMAND${NC}"
+        echo ""
+        
+        # Run OpenCode with the skill
+        # This invokes OpenCode with task() calling the appropriate skill
+        $OPENCODE_CMD "Use the $SKILL skill to: $PROMPT"
+        ;;
+    *)
+        show_error "Unknown command: $COMMAND"
+        ;;
+esac

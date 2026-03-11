@@ -42,7 +42,35 @@ Full analysis saved to PROSPECT-ANALYSIS.md
 
 ---
 
-## Quick Start
+## Quick Start (OpenCode)
+
+### Option 1: CLI Commands (Recommended)
+
+```bash
+# Clone and install CLI
+git clone https://github.com/stevie86/ai-sales-team-opencode.git
+cd ai-sales-team-opencode
+cp sales-cli /usr/local/bin/sales
+chmod +x /usr/local/bin/sales
+
+# Use like Claude Code!
+sales prospect https://stripe.com
+sales research https://notion.so
+sales contacts https://acme.com
+sales objections SaaS pricing
+```
+
+### Option 2: Native OpenCode Skills
+
+Skills are in `.opencode/skills/`. Use via task():
+
+```python
+task(load_skills=["sales-research"], prompt="Research https://stripe.com")
+```
+
+---
+
+## Quick Start (Claude Code)
 
 ### One-Command Install
 
