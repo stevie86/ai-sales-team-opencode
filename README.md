@@ -42,7 +42,69 @@ Full analysis saved to PROSPECT-ANALYSIS.md
 
 ---
 
-## Quick Start
+## Quick Start (OpenCode)
+
+### Option 1: CLI Commands (Recommended)
+
+```bash
+# Clone and install CLI
+git clone https://github.com/stevie86/ai-sales-team-opencode.git
+cd ai-sales-team-opencode
+cp sales-cli /usr/local/bin/sales
+chmod +x /usr/local/bin/sales
+
+# Use like Claude Code!
+sales prospect https://stripe.com
+sales research https://notion.so
+sales contacts https://acme.com
+sales objections SaaS pricing
+```
+
+### Option 2: Native OpenCode Skills
+
+Skills are in `.opencode/skills/`. Use via task():
+
+```python
+task(load_skills=["sales-research"], prompt="Research https://stripe.com")
+```
+
+---
+
+## Configure Your Product
+
+The skills are designed to be **product-agnostic** — they automatically load YOUR product context!
+
+### Step 1: Create Your Product Brief
+
+```bash
+# Copy the template
+cp PRODUCT-BRIEF-TEMPLATE.md PRODUCT-BRIEF.md
+
+# Edit with your product info
+vim PRODUCT-BRIEF.md
+```
+
+### Step 2: Fill In Your Details
+
+Edit `PRODUCT-BRIEF.md` with:
+- Product name & description
+- Ideal Customer Profile (ICP)
+- Pain points you solve
+- Proof points (case studies, metrics)
+- Competitors & differentiators
+- Outreach hooks
+
+### Step 3: All Skills Auto-Load
+
+Now every skill (outreach, qualify, prep, proposal...) will use YOUR product context!
+
+### File is Git-Ignored
+
+`PRODUCT-BRIEF.md` is in `.gitignore` — your sensitive product info stays private.
+
+---
+
+## Quick Start (Claude Code)
 
 ### One-Command Install
 
@@ -131,6 +193,7 @@ Installing templates...
 | `/sales objections <topic>` | Objection handling playbook | `OBJECTION-PLAYBOOK.md` |
 | `/sales icp <description>` | Ideal Customer Profile builder | `IDEAL-CUSTOMER-PROFILE.md` |
 | `/sales competitors <url>` | Competitive intelligence | `COMPETITIVE-INTEL.md` |
+| `/sales brief <stakeholder>` | Stakeholder briefing | `STAKEHOLDER-BRIEF-*.md` |
 | `/sales report` | Pipeline report (Markdown) | `SALES-REPORT.md` |
 | `/sales report-pdf` | Pipeline report (PDF) | `SALES-REPORT-*.pdf` |
 
