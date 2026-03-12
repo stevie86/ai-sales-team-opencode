@@ -1,0 +1,45 @@
+{
+  "company": {
+    "name": "",
+    "legal_name": "",
+    "domain": "",
+    "platform": "",
+    "founded": "",
+    "employees": "",
+    "headquarters": ""
+  },
+  "languages": {
+    "website": [],
+    "sales": [],
+    "support": []
+  },
+  "geography": {
+    "delivery": [],
+    "target_markets": [],
+    "languages_targeted": []
+  },
+  "industries": [],
+  "products": {
+    "count": 0,
+    "categories": []
+  },
+  "estimated_metrics": {
+    "ad_spend_monthly": "",
+    "traffic_monthly": ""
+  },
+  "compliance": {
+    "ndsg": "unknown",
+    "gdpr": "unknown",
+    "cmp": false,
+    "cookie_consent": false,
+    "server_side_tracking": false,
+    "enhanced_conversions": false
+  },
+  "data_loss": {
+    "estimated_percentage": "",
+    "causes": []
+  },
+  "projects": [],
+  "partners": [],
+  "last_updated": ""
+}

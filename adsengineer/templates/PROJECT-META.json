@@ -1,0 +1,47 @@
+{
+  "project": {
+    "name": "",
+    "domain": "",
+    "type": "e-commerce",
+    "parent_company": ""
+  },
+  "languages": {
+    "website": [],
+    "customer_support": []
+  },
+  "geography": {
+    "delivery_countries": [],
+    "target_ads_countries": [],
+    "waste_countries": []
+  },
+  "products": {
+    "sku_count": 0,
+    "categories": []
+  },
+  "tracking": {
+    "current": {
+      "ga4": false,
+      "gtm": false,
+      "meta_pixel": false,
+      "tiktok_pixel": false,
+      "cmp": false
+    },
+    "data_loss": {
+      "safari_itp": "",
+      "ad_blockers": "",
+      "other": "",
+      "total": ""
+    }
+  },
+  "ad_spend": {
+    "estimated_monthly": "",
+    "channels": [],
+    "missing_channels": []
+  },
+  "compliance_risks": {
+    "ndsg_violation": false,
+    "gdpr_violation": false,
+    "pixels_before_consent": false
+  },
+  "last_updated": ""
+}

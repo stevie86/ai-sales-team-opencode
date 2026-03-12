@@ -1,0 +1,34 @@
+{
+  "partner": {
+    "name": "",
+    "legal_name": "",
+    "domain": "",
+    "contact": {
+      "name": "",
+      "role": "",
+      "linkedin": "",
+      "email": ""
+    }
+  },
+  "clearance_level": 0,
+  "clearance_name": "",
+  "languages": {
+    "sales": [],
+    "support": []
+  },
+  "partnership": {
+    "type": "",
+    "started": "",
+    "status": "outreach",
+    "revenue_share": ""
+  },
+  "capabilities": {
+    "platform_integration": false,
+    "native_tracking": false,
+    "customer_access": false,
+    "reseller": false
+  },
+  "prospects_shared": [],
+  "prospects_accessible": "",
+  "last_updated": ""
+}

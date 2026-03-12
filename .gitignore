@@ -1,17 +1,53 @@
 # Generated reports (output files created in working directory)
-/PROSPECT-ANALYSIS*.md
-/COMPANY-RESEARCH*.md
-/LEAD-QUALIFICATION*.md
-/DECISION-MAKERS*.md
-/OUTREACH-SEQUENCE*.md
-/FOLLOWUP-SEQUENCE*.md
-/MEETING-PREP*.md
-/CLIENT-PROPOSAL*.md
-/OBJECTION-PLAYBOOK*.md
-/IDEAL-CUSTOMER-PROFILE*.md
-/COMPETITIVE-INTEL*.md
-/SALES-REPORT*.md
-/SALES-REPORT*.pdf
+PROSPECT-ANALYSIS*.md
+COMPANY-RESEARCH*.md
+LEAD-QUALIFICATION*.md
+DECISION-MAKERS*.md
+OUTREACH-SEQUENCE*.md
+FOLLOWUP-SEQUENCE*.md
+MEETING-PREP*.md
+CLIENT-PROPOSAL*.md
+OBJECTION-PLAYBOOK*.md
+IDEAL-CUSTOMER-PROFILE*.md
+COMPETITIVE-INTEL*.md
+SALES-REPORT*.md
+SALES-REPORT*.pdf
+OUTREACH-*.md
+URGENT-OUTREACH-*.md
+LINKEDIN-OUTREACH*.md
+
+# ===== TEMPLATES (KEEP - DO NOT IGNORE) =====
+!adsengineer/STRUCTURE.md
+!adsengineer/PARTNERS/CLEARANCE.md
+!adsengineer/templates/
+
+# ===== ACTUAL CUSTOMER DATA (IGNORE) =====
+# Prospect data - DO NOT COMMIT
+adsengineer/prospects/*/META.json
+adsengineer/prospects/*/projects/*/META.json
+adsengineer/prospects/*/COMPANY-RESEARCH.md
+adsengineer/prospects/*/COMPETITIVE-INTEL.md
+adsengineer/prospects/*/PROSPECT-ANALYSIS.md
+adsengineer/prospects/*/PITCH.md
+adsengineer/prospects/*/CAMPAIGN.md
+adsengineer/prospects/*/outreach/
+adsengineer/prospects/babyrella/
+adsengineer/prospects/orderflow.ch/
+adsengineer/prospects/proseller/
+
+# Partner data - DO NOT COMMIT
+adsengineer/partners/*/META.json
+adsengineer/partners/*/PARTNERSHIP-PITCH.md
+adsengineer/partners/*/outreach/
+adsengineer/partners/proseller/
+
+# Product brief - sensitive
+PRODUCT-BRIEF.md
+PRODUCT-BRIEF-*.md
+!PRODUCT-BRIEF-TEMPLATE.md
+CURRENT-PRODUCT.md
+
+# ===== END DATA SECTION =====
 
 # Python
 __pycache__/
