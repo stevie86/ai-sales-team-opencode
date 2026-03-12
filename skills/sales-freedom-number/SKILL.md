@@ -26,7 +26,8 @@ This skill prevents the common founder/salesperson trap of:
 
 ## When This Skill Is Invoked
 
-- **Set up:** Calculate your personal Freedom Number
+- **Set up:** Calculate your personal Freedom Number (with currency)
+- **Configure:** Set your preferred currency and conversion rates
 - **Qualify:** Analyze how a prospect contributes to freedom
 - **Negotiate:** Evaluate if terms preserve or compromise freedom
 - **Review pipeline:** Score entire pipeline against Freedom Number
@@ -34,7 +35,81 @@ This skill prevents the common founder/salesperson trap of:
 
 ---
 
+## Part 0: Currency Configuration (First Time Setup)
+
+### Set Your Base Currency
+
+Before calculating your Freedom Number, the skill MUST ask:
+
+```
+What is your base currency?
+Options: CHF (Swiss Franc), EUR (Euro), USD (US Dollar), GBP (British Pound)
+```
+
+Then ask for conversion rates:
+
+```
+Enter conversion rates to your base currency:
+
+1 CHF = ? [base currency]
+1 EUR = ? [base currency]
+1 USD = ? [base currency]
+1 GBP = ? [base currency]
+
+Example (if base = CHF):
+- 1 CHF = 1.00 CHF
+- 1 EUR = 0.95 CHF
+- 1 USD = 0.88 CHF
+- 1 GBP = 1.15 CHF
+```
+
+### Currency Conversion Rules
+
+- All internal calculations use your **base currency**
+- When analyzing prospects in different currencies, **convert first**
+- Display all values in your **base currency**
+- Show original currency in parentheses
+
+### Configuration Storage
+
+Save currency settings to `FREEDOM-SETTINGS.json`:
+
+```json
+{
+  "base_currency": "CHF",
+  "currency_symbol": "CHF",
+  "conversion_rates": {
+    "CHF": 1.00,
+    "EUR": 0.95,
+    "USD": 0.88,
+    "GBP": 1.15
+  },
+  "last_updated": "2026-03-12"
+}
+```
+
+### If Currency Not Set
+
+If user invokes the skill without setting currency:
+
+```
+⚠️  Currency not configured.
+
+Please set your base currency first:
+
+1. What is your base currency? (CHF/EUR/USD/GBP)
+2. Enter conversion rates:
+   - 1 CHF = ? [base]
+   - 1 EUR = ? [base]
+   - 1 USD = ? [base]
+   - 1 GBP = ? [base]
+```
+
+---
+
 ## Part 1: Freedom Number Calculation
+
+> **Note:** In all templates below, `[CURRENCY]` will be replaced with your base currency symbol (e.g., CHF, €, $, £). The skill automatically converts all values to your base currency.
 
 ### Your Freedom Number = Monthly Revenue Required for Financial Freedom
 
@@ -46,15 +121,15 @@ Freedom Number = (Monthly Living Expenses + Investment for Freedom + Business Ru
 ### Step 1: Calculate Monthly Living Expenses
 
 | Category | Monthly Cost |
-|----------|-------------|
-| Housing (rent/mortgage) | CHF |
-| Food & Groceries | CHF |
-| Transportation | CHF |
-| Healthcare | CHF |
-| Insurance | CHF |
-| Personal/Family | CHF |
-| Subscriptions | CHF |
-| **Subtotal** | **CHF** |
+|----------|---------------|
+| Housing (rent/mortgage) | [CURRENCY] |
+| Food & Groceries | [CURRENCY] |
+| Transportation | [CURRENCY] |
+| Healthcare | [CURRENCY] |
+| Insurance | [CURRENCY] |
+| Personal/Family | [CURRENCY] |
+| Subscriptions | [CURRENCY] |
+| **Subtotal** | **[CURRENCY]** |
 
 ### Step 2: Investment for Freedom
 
@@ -62,11 +137,11 @@ This is the amount you invest monthly toward achieving financial independence.
 
 | Investment | Monthly Amount |
 |------------|---------------|
-| Retirement (401k, pension) | CHF |
-| Index Funds/ETFs | CHF |
-| Real Estate | CHF |
-| Side Businesses | CHF |
-| **Subtotal** | **CHF** |
+| Retirement (401k, pension) | [CURRENCY] |
+| Index Funds/ETFs | [CURRENCY] |
+| Real Estate | [CURRENCY] |
+| Side Businesses | [CURRENCY] |
+| **Subtotal** | **[CURRENCY]** |
 
 ### Step 3: Business Running Costs
 
@@ -74,12 +149,12 @@ Monthly costs to keep your business alive.
 
 | Cost | Monthly Amount |
 |------|---------------|
-| Software/Tools | CHF |
-| Marketing | CHF |
-| Contractors | CHF |
-| Taxes | CHF |
-| Legal/Admin | CHF |
-| **Subtotal** | **CHF** |
+| Software/Tools | [CURRENCY] |
+| Marketing | [CURRENCY] |
+| Contractors | [CURRENCY] |
+| Taxes | [CURRENCY] |
+| Legal/Admin | [CURRENCY] |
+| **Subtotal** | **[CURRENCY]** |
 
 ### Step 4: Safety Buffer
 
@@ -331,6 +406,14 @@ Before accepting any deal, ask:
 ---
 
 ## Usage
+
+### First Time: Set Your Currency
+
+```
+/sales freedom-number --currency
+```
+
+This will prompt you to set your base currency and conversion rates.
 
 ### First Time: Set Your Freedom Number
 
