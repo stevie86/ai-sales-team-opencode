@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="#quick-start"><img src="https://img.shields.io/badge/install-one--liner-blue?style=for-the-badge" alt="Install"></a>
-  <a href="#commands"><img src="https://img.shields.io/badge/14_skills-ready-8b5cf6?style=for-the-badge" alt="14 Skills"></a>
+  <a href="#commands"><img src="https://img.shields.io/badge/18_skills-ready-8b5cf6?style=for-the-badge" alt="18 Skills"></a>
   <a href="#how-it-works"><img src="https://img.shields.io/badge/5_parallel-agents-22c55e?style=for-the-badge" alt="5 Agents"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-gray?style=for-the-badge" alt="MIT License"></a>
 </p>
@@ -132,13 +132,14 @@ pip install -r requirements.txt
 ```
 ╔══════════════════════════════════════════════════════════╗
 ║  AI Sales Team — Claude Code Skills                     ║
-║  14 Skills · 5 Agents · 4 Scripts · PDF                 ║
+║  18 Skills · 5 Agents · 4 Scripts · PDF                ║
 ╚══════════════════════════════════════════════════════════╝
 
 Installing skills...
   ✓ sales (orchestrator)
   ✓ sales-prospect
   ✓ sales-research
+  ✓ sales-research-confidence
   ✓ sales-qualify
   ✓ sales-contacts
   ✓ sales-outreach
@@ -150,6 +151,9 @@ Installing skills...
   ✓ sales-competitors
   ✓ sales-report
   ✓ sales-report-pdf
+  ✓ marketing-ads-campaign
+  ✓ marketing-seo-audit
+  ✓ sales-pilot-pricing
 
 Installing agents...
   ✓ sales-company
@@ -196,6 +200,63 @@ Installing templates...
 | `/sales brief <stakeholder>` | Stakeholder briefing | `STAKEHOLDER-BRIEF-*.md` |
 | `/sales report` | Pipeline report (Markdown) | `SALES-REPORT.md` |
 | `/sales report-pdf` | Pipeline report (PDF) | `SALES-REPORT-*.pdf` |
+
+---
+
+## Skills Reference
+
+All skills are located in `skills/` and can be invoked via the `/sales` command or directly with `task()`.
+
+### Core Sales Skills
+
+| Skill | Description | Invocation |
+|:------|:------------|:-----------|
+| **sales-prospect** | Full prospect audit with 5 parallel agents | `/sales prospect <url>` |
+| **sales-research** | Company research & firmographics (8 dimensions) | `/sales research <url>` |
+| **sales-research-confidence** | Validate research quality, score confidence | `/sales research-confidence <url>` |
+| **sales-qualify** | BANT + MEDDIC lead scoring | `/sales qualify <url>` |
+| **sales-contacts** | Decision maker identification | `/sales contacts <url>` |
+| **sales-outreach** | Cold outreach email sequences | `/sales outreach <company>` |
+| **sales-followup** | Follow-up email sequences | `/sales followup <company>` |
+| **sales-prep** | Meeting preparation brief | `/sales prep <url>` |
+| **sales-proposal** | Client proposal generator | `/sales proposal <client>` |
+| **sales-objections** | Objection handling playbook | `/sales objections <topic>` |
+| **sales-icp** | Ideal Customer Profile builder | `/sales icp <description>` |
+| **sales-competitors** | Competitive intelligence | `/sales competitors <url>` |
+| **sales-report** | Pipeline report (Markdown) | `/sales report` |
+| **sales-report-pdf** | Pipeline report (PDF) | `/sales report-pdf` |
+
+### Marketing Skills
+
+| Skill | Description | Invocation |
+|:------|:------------|:-----------|
+| **marketing-ads-campaign** | Create Google/Meta ad campaigns | `/marketing ads <company>` |
+| **marketing-seo-audit** | SEO audit & recommendations | `/marketing seo <url>` |
+
+### Specialized Skills
+
+| Skill | Description | Invocation |
+|:------|:------------|:-----------|
+| **sales-pilot-pricing** | Pilot program pricing strategy | `/sales pilot-pricing <company>` |
+
+---
+
+### How to Use Skills
+
+**Via CLI command:**
+```bash
+/sales research https://acme.com
+```
+
+**Via task() (for automation):**
+```python
+task(load_skills=["sales-research"], prompt="Research https://acme.com")
+```
+
+**Via skill directly:**
+```python
+skills_use(name="sales-research", context="Research Stripe")
+```
 
 ---
 
@@ -434,22 +495,30 @@ Output: MEETING-PREP.md
 ```
 ai-sales-team-claude/
 │
-├── sales/SKILL.md                     ← Main orchestrator (routes all /sales commands)
-│
-├── skills/                            ← 13 sub-skills
-│   ├── sales-prospect/SKILL.md           Full prospect audit (launches 5 agents)
-│   ├── sales-research/SKILL.md           Company research & firmographics
-│   ├── sales-qualify/SKILL.md            Lead qualification (BANT + MEDDIC)
-│   ├── sales-contacts/SKILL.md           Decision maker identification
-│   ├── sales-outreach/SKILL.md           Cold outreach email sequences
-│   ├── sales-followup/SKILL.md           Follow-up email generation
-│   ├── sales-prep/SKILL.md               Meeting preparation brief
-│   ├── sales-proposal/SKILL.md           Client proposal generator
-│   ├── sales-objections/SKILL.md         Objection handling playbook
-│   ├── sales-icp/SKILL.md                Ideal Customer Profile builder
-│   ├── sales-competitors/SKILL.md        Competitive intelligence
-│   ├── sales-report/SKILL.md             Pipeline report (Markdown)
-│   └── sales-report-pdf/SKILL.md         Pipeline report (PDF)
+├── skills/                            ← 18 skills
+│   │
+│   ├── Core Sales Skills
+│   │   ├── sales-prospect/               Full prospect audit (launches 5 agents)
+│   │   ├── sales-research/                Company research & firmographics
+│   │   ├── sales-research-confidence/     Research validation & quality scoring
+│   │   ├── sales-qualify/                Lead qualification (BANT + MEDDIC)
+│   │   ├── sales-contacts/               Decision maker identification
+│   │   ├── sales-outreach/               Cold outreach email sequences
+│   │   ├── sales-followup/               Follow-up email generation
+│   │   ├── sales-prep/                   Meeting preparation brief
+│   │   ├── sales-proposal/               Client proposal generator
+│   │   ├── sales-objections/             Objection handling playbook
+│   │   ├── sales-icp/                    Ideal Customer Profile builder
+│   │   ├── sales-competitors/            Competitive intelligence
+│   │   ├── sales-report/                 Pipeline report (Markdown)
+│   │   └── sales-report-pdf/             Pipeline report (PDF)
+│   │
+│   ├── Marketing Skills
+│   │   ├── marketing-ads-campaign/       Ad campaign creation
+│   │   └── marketing-seo-audit/          SEO audit & recommendations
+│   │
+│   └── Specialized Skills
+│       └── sales-pilot-pricing/          Pilot pricing strategy
 │
 ├── agents/                            ← 5 parallel subagents
 │   ├── sales-company.md                  Company fit & firmographics (25%)
