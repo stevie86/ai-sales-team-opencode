@@ -6,6 +6,8 @@ allowed-tools:
   - Glob
   - Bash
   - question
+  - WebFetch
+  - write
 ---
 
 # Freedom Number Prospect Analyzer
@@ -37,6 +39,22 @@ This skill prevents the common founder/salesperson trap of:
 
 ## Part 0: Currency Configuration (First Time Setup)
 
+### Option A: Auto-Fetch Live Rates (Recommended)
+
+The skill can fetch live exchange rates from free APIs. This is **automatic and accurate**.
+
+**API Endpoints (free, no key required):**
+- `https://open.er-api.com/v6/latest/{BASE}` — Recommended, reliable
+- `https://api.frankfurter.app/latest?from={BASE}` — EUR base
+
+**Supported currencies:** USD, EUR, GBP, CHF, CAD, AUD, JPY, and 150+ more
+
+### Option B: Manual Entry
+
+If you prefer to set rates manually, or need fixed rates.
+
+---
+
 ### Set Your Base Currency
 
 Before calculating your Freedom Number, the skill MUST ask:
@@ -46,7 +64,35 @@ What is your base currency?
 Options: CHF (Swiss Franc), EUR (Euro), USD (US Dollar), GBP (British Pound)
 ```
 
-Then ask for conversion rates:
+Then ask:
+
+```
+How would you like to set conversion rates?
+
+1. Auto-fetch live rates (recommended) — Uses free API
+2. Enter manually — I have my own rates
+
+Choose [1/2]:
+```
+
+If user chooses **Option A (Auto)**:
+
+```
+Fetching live rates from open.er-api.com...
+
+Base currency: [CHF/EUR/USD/GBP]
+
+Rates fetched:
+  EUR: 0.95
+  USD: 0.88
+  GBP: 1.15
+  ...
+
+✓ Rates valid for 24 hours
+✓ Will auto-refresh next time you run the skill
+```
+
+If user chooses **Option B (Manual)**:
 
 ```
 Enter conversion rates to your base currency:
@@ -69,6 +115,7 @@ Example (if base = CHF):
 - When analyzing prospects in different currencies, **convert first**
 - Display all values in your **base currency**
 - Show original currency in parentheses
+- **Live rates refresh every 24 hours** automatically
 
 ### Configuration Storage
 
@@ -84,8 +131,40 @@ Save currency settings to `FREEDOM-SETTINGS.json`:
     "USD": 0.88,
     "GBP": 1.15
   },
+  "rates_source": "open.er-api.com",
+  "rates_fetched": "2026-03-12T23:00:00Z",
+  "rates_expire": "2026-03-13T23:00:00Z",
   "last_updated": "2026-03-12"
 }
+```
+
+### API Fetching Process
+
+When user selects auto-fetch:
+
+```
+Step 1: Fetch rates
+Command: curl -s https://open.er-api.com/v6/latest/{BASE}
+Example: curl -s https://open.er-api.com/v6/latest/CHF
+
+Response:
+{
+  "result": "success",
+  "base_code": "CHF",
+  "time_last_update_utc": "Thu, 12 Mar 2026 00:00:00 +0000",
+  "rates": {
+    "EUR": 0.9485,
+    "USD": 0.8812,
+    "GBP": 1.1523,
+    "CAD": 1.3521,
+    "AUD": 1.5823,
+    "JPY": 145.23
+  }
+}
+
+Step 2: Parse and store rates
+Step 3: Set expiry (24 hours)
+Step 4: Display confirmation
 ```
 
 ### If Currency Not Set
@@ -407,13 +486,24 @@ Before accepting any deal, ask:
 
 ## Usage
 
-### First Time: Set Your Currency
+### First Time: Set Your Currency (Auto-fetch live rates)
 
 ```
-/sales freedom-number --currency
+/sales freedom-number --currency --auto
 ```
 
-This will prompt you to set your base currency and conversion rates.
+This will:
+1. Ask for your base currency (CHF/EUR/USD/GBP)
+2. Fetch live rates from open.er-api.com
+3. Auto-configure conversion rates
+
+### First Time: Set Your Currency (Manual entry)
+
+```
+/sales freedom-number --currency --manual
+```
+
+If you prefer to enter your own rates.
 
 ### First Time: Set Your Freedom Number
 
@@ -440,6 +530,14 @@ This will prompt you to calculate your personal Freedom Number.
 ```
 /sales freedom-number evaluate --terms "Net 90, exclusive, custom build"
 ```
+
+### Refresh Currency Rates
+
+```
+/sales freedom-number --refresh-rates
+```
+
+Fetches new rates from API (if rates are older than 24 hours).
 
 ---
 
